@@ -1,0 +1,4 @@
+Pillow==9.2.0
+rich==12.6.0
+torch==1.12.1
+torchvision==0.2.2

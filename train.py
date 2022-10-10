@@ -46,7 +46,7 @@ def train(content_img_path, style_img_path, n_epoch, lr, alpha, beta):
 
             #print the image and save it after each 100 epoch
             if(e/100):                
-                save_image(dn(generated_image),"gen.png") `
+                save_image(dn(generated_image),"gen.png")
 
 
 if __name__ == "__main__":
