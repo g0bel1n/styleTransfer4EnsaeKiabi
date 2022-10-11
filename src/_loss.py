@@ -21,9 +21,9 @@ class Loss:
 
     def __call__(self, generated_img_features, style_img_features, content_img_features) -> Tensor:
         style_loss=content_loss=0
-        for gen,cont,style in zip(generated_img_features,content_img_features,style_img_features):
+        for gen,cont,style, style_coef in zip(generated_img_features,content_img_features,style_img_features, [1.,.75,.2,.2,.2]):
 
             content_loss+=compute_content_loss(gen,cont)
-            style_loss+=compute_style_loss(gen,style)
+            style_loss+=style_coef * compute_style_loss(gen,style)
 
         return self.alpha*content_loss + self.beta*style_loss

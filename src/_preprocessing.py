@@ -21,14 +21,17 @@ class Denormalize(object):
     def __call__(self, tensor):
 
         for t, m, s in zip(tensor, self.mean, self.std):
-            t.mul_(s).add_(m)     
+            t.clone().mul_(s).add_(m)     
         return tensor
 
 def loader(path : str, device : device = device('cpu'), loader = None) -> FloatTensor:
     img = Image.open(path)
 
     if loader is None :
-        loader=transforms.Compose([transforms.Resize((512,512)), transforms.ToTensor(), Normalize()]) 
+        loader=transforms.Compose([transforms.Resize((512,512)),
+         transforms.ToTensor(),
+          #Normalize()
+          ]) 
 
     img=loader(img).unsqueeze(0)
     return img.to(device,float)

@@ -7,6 +7,8 @@ class VGG(nn.Module):
         super(VGG,self).__init__()
         self.req_features= ['0','5','10','19','28'] 
         self.model=models.vgg19(pretrained=True).features[:29]
+        for param in self.model.parameters():
+            param.requires_grad_(False)
     
    
     def forward(self,x):
