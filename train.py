@@ -29,8 +29,8 @@ def train(content_img_path, style_img_path, n_epoch, lr, alpha, beta):
     total_loss = 0
     loss = Loss(alpha=alpha, beta=beta)
     with Progress(TextColumn("[bold blue] Transfering",), SpinnerColumn(spinner_name='growHorizontal'), BarColumn(), MofNCompleteColumn(), TextColumn('[ elapsed'), TimeElapsedColumn(), TextColumn('| eta'), TimeRemainingColumn(), TextColumn("]{task.description}")) as progress:
-        pbar = progress.add_task(f"- Loss {total_loss:.2f}", total=n_epoch)
-        for e in range(n_epoch):
+        pbar = progress.add_task(f"- Loss {total_loss:.2f}", total=n_epoch+1)
+        for e in range(n_epoch+1):
             #extracting the features of generated, content and the original required for calculating the loss
             gen_features=model(generated_image)
             orig_feautes=model(content)
