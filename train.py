@@ -45,7 +45,7 @@ def train(content_img_path, style_img_path, n_epoch, lr, alpha, beta):
             progress.update(pbar, advance=1, description=f"- Loss {total_loss:.2f}" )
 
             #print the image and save it after each 100 epoch
-            if(e%100==0): 
+            if(e%500==0): 
                 #dn_gen = dn(generated_image).clone()           
                 save_image(generated_image.clone(),f"data/output/gen_{e}.png")
 
@@ -53,8 +53,8 @@ def train(content_img_path, style_img_path, n_epoch, lr, alpha, beta):
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("-s", type=str, default="data/input/starry_night.jpeg")
-    parser.add_argument("-c", type=str, default="data/input/ensae.jpeg")
+    parser.add_argument("-s", type=str, default="data/input/style_leo.jpg")
+    parser.add_argument("-c", type=str, default="data/input/ensae_1.jpg")
     parser.add_argument("--alpha", type=int, default=10)
     parser.add_argument("--beta", type=int, default=1e7)
     parser.add_argument("--n_epoch", type=int, default=2000)
