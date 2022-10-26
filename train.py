@@ -14,7 +14,7 @@ from src import VGG, Loss, loader, Denormalize
 
 def train(content_img_path, style_img_path, n_epoch, lr, alpha, beta):
 
-    device=torch.device( "cuda" if (torch.cuda.is_available()) else 'cpu')
+    device=torch.device("cuda" if (torch.cuda.is_available()) else 'cpu')
 
     style = loader(path = style_img_path, device=device)
     content =  loader(path = content_img_path, device=device)
@@ -25,7 +25,7 @@ def train(content_img_path, style_img_path, n_epoch, lr, alpha, beta):
 
     dn =Denormalize()
 
-    optimizer=Adam([generated_image],lr=lr)
+    optimizer=Adam([generated_image], lr=lr)
     total_loss = 0
     loss = Loss(alpha=alpha, beta=beta)
     with Progress(TextColumn("[bold blue] Transfering",), SpinnerColumn(spinner_name='growHorizontal'), BarColumn(), MofNCompleteColumn(), TextColumn('[ elapsed'), TimeElapsedColumn(), TextColumn('| eta'), TimeRemainingColumn(), TextColumn("]{task.description}")) as progress:
@@ -61,4 +61,4 @@ if __name__ == "__main__":
     parser.add_argument("--lr", type=float, default=0.004)
     args = parser.parse_args()
 
-    train(content_img_path=args.c, style_img_path=args.s, n_epoch=args.n_epoch, lr=args.lr, alpha = args.alpha, beta=args.beta)
+    train(content_img_path=args.c, style_img_path=args.s, n_epoch=args.n_epoch, lr=args.lr, alpha=args.alpha, beta=args.beta)
